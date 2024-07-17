@@ -3,6 +3,7 @@ import React from "react";
 function List({ tasks, deleteTask, moveTaskUp, moveTaskDown }) {
   return (
     <ol>
+      <h1>жопа</h1>
       {tasks.map((task, index) => (
         <li className="animate__bounceIn" key={index}>
           <span className="text">{task}</span>
