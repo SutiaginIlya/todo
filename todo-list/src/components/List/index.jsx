@@ -1,6 +1,7 @@
 import React from "react";
+import styles from './index.module.css';
 
-function List({ tasks, deleteTask, moveTaskUp, moveTaskDown }) {
+export const List = ({ tasks, deleteTask, moveTaskUp, moveTaskDown }) => {
   return (
     <ol>
       {tasks.map((task, index) => (
@@ -15,10 +16,12 @@ function List({ tasks, deleteTask, moveTaskUp, moveTaskDown }) {
           <button className="delete-btn" onClick={() => moveTaskDown(index)}>
             Down
           </button>
+          <span className={styles.test_color}>
+            test text
+          </span>
         </li>
       ))}
     </ol>
   );
 }
 
-export default List;
