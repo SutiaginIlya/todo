@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Input from "./Input";
-import List from "./List";
+import Input from "../HeadInput/HeadInput";
+import List from "../List/List";
 
 function Main() {
   const [tasks, setTasks] = useState([]);
