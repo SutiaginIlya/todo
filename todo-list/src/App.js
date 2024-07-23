@@ -1,11 +1,9 @@
 import ToDoList from "./ToDoList";
 
-function App() {
+export const App = () => {
   return (
     <div>
       <ToDoList />
     </div>
   );
 }
-
-export default App;

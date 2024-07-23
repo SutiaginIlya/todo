@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 
-function Input({ addTask }) {
+export const Input = ({ addTask }) => {
   const [newTask, setNewTask] = useState("");
 
-  function handleInputChange(event) {
+  const handleInputChange = (event) => {
     setNewTask(event.target.value);
-  }
+  };
 
-  function handleAddTask() {
+  const handleAddTask = () => {
     if (newTask.trim() !== "") {
       addTask(newTask);
       setNewTask("");
     }
-  }
+  };
 
   return (
     <div className="todo-div-input">
@@ -28,6 +28,4 @@ function Input({ addTask }) {
       </button>
     </div>
   );
-}
-
-export default Input;
+};

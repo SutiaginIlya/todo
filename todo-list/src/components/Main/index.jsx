@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import Input from "../HeadInput/HeadInput";
 import { List } from "../List/index";
 
-function Main() {
+export const Main = () => {
   const [tasks, setTasks] = useState([]);
 
-  function addTask(newTask) {
+  const addTask = (newTask) => {
     setTasks((prev) => [...prev, newTask]);
-  }
+  };
 
-  function deleteTask(index) {
+  const deleteTask = (index) => {
     const updatedTasks = tasks.filter((_, i) => i !== index);
     setTasks(updatedTasks);
-  }
+  };
 
-  function moveTaskUp(index) {
+  const moveTaskUp = (index) => {
     if (index > 0) {
       const updatedTasks = [...tasks];
       [updatedTasks[index], updatedTasks[index - 1]] = [
@@ -23,9 +23,9 @@ function Main() {
       ];
       setTasks(updatedTasks);
     }
-  }
+  };
 
-  function moveTaskDown(index) {
+  const moveTaskDown = (index) => {
     if (index < tasks.length - 1) {
       const updatedTasks = [...tasks];
       [updatedTasks[index], updatedTasks[index + 1]] = [
@@ -34,7 +34,7 @@ function Main() {
       ];
       setTasks(updatedTasks);
     }
-  }
+  };
 
   return (
     <div className="main-div">
@@ -48,6 +48,4 @@ function Main() {
       />
     </div>
   );
-}
-
-export default Main;
+};
