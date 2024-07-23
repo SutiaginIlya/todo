@@ -1,5 +1,5 @@
 import React from "react";
-import Main from "./components/Main/index";
+import { Main } from "./components/Main/index";
 
 function ToDoList() {
   return (
