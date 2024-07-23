@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './index.module.css';
+import styles from "./index.module.css";
 
 export const List = ({ tasks, deleteTask, moveTaskUp, moveTaskDown }) => {
   return (
@@ -16,12 +16,9 @@ export const List = ({ tasks, deleteTask, moveTaskUp, moveTaskDown }) => {
           <button className="delete-btn" onClick={() => moveTaskDown(index)}>
             Down
           </button>
-          <span className={styles.test_color}>
-            test text
-          </span>
+          <span className={styles.test_color}>test text</span>
         </li>
       ))}
     </ol>
   );
-}
-
+};
