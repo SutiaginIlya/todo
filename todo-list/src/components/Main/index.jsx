@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Input from "../HeadInput/HeadInput";
+import Input from "../HeadInput/index";
 import { List } from "../List/index";
 
 function Main() {
