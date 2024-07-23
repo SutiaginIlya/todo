@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input } from "../HeadInput/index";
+import { HeadInput } from "../HeadInput/index";
 import { List } from "../List/index";
 
 export const Main = () => {
@@ -39,7 +39,7 @@ export const Main = () => {
   return (
     <div className="main-div">
       <h1 className="animate__fadeIn">To Do List</h1>
-      <Input addTask={addTask} />
+      <HeadInput addTask={addTask} />
       <List
         tasks={tasks}
         deleteTask={deleteTask}

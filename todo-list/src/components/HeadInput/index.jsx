@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Input } from "../Input/index";
 
-export const Input = ({ addTask }) => {
+export const HeadInput = ({ addTask }) => {
   const [newTask, setNewTask] = useState("");
 
   const handleInputChange = (event) => {
@@ -22,13 +23,10 @@ export const Input = ({ addTask }) => {
 
   return (
     <div className="todo-div-input">
-      <input
-        className="todo-input"
-        type="text"
-        value={newTask}
-        placeholder="Enter new task..."
-        onChange={handleInputChange}
-        onKeyDown={handleKeyDown}
+      <Input 
+      handleInputChange={handleInputChange}
+      handleKeyDown={handleKeyDown}
+      newTask={newTask}
       />
       <button className="add-btn" onClick={handleAddTask}>
         Add
