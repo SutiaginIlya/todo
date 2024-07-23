@@ -14,6 +14,12 @@ function Input({ addTask }) {
     }
   }
 
+  function handleKeyDown(event) {
+    if (event.key === "Enter") {
+      handleAddTask();
+    }
+  }
+
   return (
     <div className="todo-div-input">
       <input
@@ -22,6 +28,7 @@ function Input({ addTask }) {
         value={newTask}
         placeholder="Enter new task..."
         onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
       />
       <button className="add-btn" onClick={handleAddTask}>
         Add
