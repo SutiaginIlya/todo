@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Input } from "../Input/index";
+import styles from "./index.module.css"
 
 export const HeadInput = ({ addTask }) => {
   const [newTask, setNewTask] = useState("");
@@ -22,7 +23,7 @@ export const HeadInput = ({ addTask }) => {
   }
 
   return (
-    <div className="todo-div-input">
+    <div className={styles.todo_div_input}>
       <Input 
       handleInputChange={handleInputChange}
       handleKeyDown={handleKeyDown}

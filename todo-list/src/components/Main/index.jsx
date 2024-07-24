@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { HeadInput } from "../HeadInput/index";
 import { List } from "../List/index";
+import styles from "./index.module.css"
 
 export const Main = () => {
   const [tasks, setTasks] = useState([]);
@@ -37,7 +38,7 @@ export const Main = () => {
   };
 
   return (
-    <div className="main-div">
+    <div className={styles.main_div}>
       <h1 className="animate__fadeIn">To Do List</h1>
       <HeadInput addTask={addTask} />
       <List
