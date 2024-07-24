@@ -18,11 +18,11 @@ export const HeadInput = ({ addTask }) => {
     }
   };
 
-  function handleKeyDown(event) {
+  const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleAddTask();
     }
-  }
+  };
 
   return (
     <div className={styles.todo_div_input}>
@@ -31,7 +31,12 @@ export const HeadInput = ({ addTask }) => {
         handleKeyDown={handleKeyDown}
         newTask={newTask}
       />
-      <Fab color="primary" aria-label="add" size="small" onClick={handleAddTask}>
+      <Fab
+        color="primary"
+        aria-label="add"
+        size="small"
+        onClick={handleAddTask}
+      >
         <AddIcon />
       </Fab>
     </div>
