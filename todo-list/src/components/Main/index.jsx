@@ -39,7 +39,7 @@ export const Main = () => {
 
   return (
     <div className={styles.main_div}>
-      <h1 className="animate__fadeIn">To Do List</h1>
+      <h1 className={styles.head_text}>To Do List</h1>
       <HeadInput addTask={addTask} />
       <List
         tasks={tasks}
