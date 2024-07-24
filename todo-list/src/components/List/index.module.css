@@ -12,8 +12,9 @@
     margin: 10px 0 10px 0; */
 }
 .text {
-    font-size: larger;
+    font-size: 32px;
     font-weight: bold;
+    color: #1976d2;
     flex: 1;
     margin-right: 10px;
     max-width: 600px; 
