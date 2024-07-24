@@ -4,10 +4,10 @@ import { Buttons } from "../Buttons/index";
 
 export const List = ({ tasks, deleteTask, moveTaskUp, moveTaskDown }) => {
   return (
-    <ol>
+    <ol className={styles.ol_cont}>
       {tasks.map((task, index) => (
-        <li className="animate__bounceIn" key={index}>
-          <span className="text">{task}</span>
+        <li className={styles.list} key={index}>
+          <div className={styles.text}>{task}</div>
           <Buttons
             index={index}
             deleteTask={deleteTask}
