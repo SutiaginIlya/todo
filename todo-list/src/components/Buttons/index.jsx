@@ -16,10 +16,10 @@ export const Buttons = ({ index, deleteTask, moveTaskUp, moveTaskDown }) => {
           <DeleteIcon />
         </IconButton>
         <Button variant="contained" onClick={() => moveTaskUp(index)}>
-          Up
+          Go up
         </Button>
         <Button variant="contained" onClick={() => moveTaskDown(index)}>
-          Down
+          Go down
         </Button>
       </Stack>
     </span>
