@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { HeadInput } from "../HeadInput/index";
 import { List } from "../List/index";
 import styles from "./index.module.css"
 
 export const Main = () => {
   const [tasks, setTasks] = useState([]);
+  const [click, setClick] = useState(false);
+
+  useEffect(() => {
+    if (click) {
+      alert("Задача удалена");
+    }
+  }, [click]);
 
   const addTask = (newTask) => {
     setTasks((prev) => [...prev, newTask]);
@@ -13,6 +20,7 @@ export const Main = () => {
   const deleteTask = (index) => {
     const updatedTasks = tasks.filter((_, i) => i !== index);
     setTasks(updatedTasks);
+    setClick(true)
   };
 
   const moveTaskUp = (index) => {
