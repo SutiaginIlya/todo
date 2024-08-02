@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-export const Buttons = ({ index, deleteTask, moveTaskUp, moveTaskDown }) => {
+export const MovementButtons = ({ index, deleteTask, moveTaskUp, moveTaskDown }) => {
   return (
     <span>
       <Stack spacing={2} direction="row">
