@@ -23,7 +23,7 @@ export const HeadInput = ({ addTask }) => {
     if (newTask.trim() !== "") {
       addTask(newTask);
       setNewTask("");
-      setClick(true)
+      setClick(true);
       console.log(2);
     }
   };
@@ -31,7 +31,7 @@ export const HeadInput = ({ addTask }) => {
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleAddTask();
-      setClick(true)
+      setClick(true);
       console.log(3);
     }
   };

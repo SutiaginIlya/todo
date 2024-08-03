@@ -2,7 +2,13 @@ import React from "react";
 import styles from "./index.module.css";
 import { MovementButtons } from "../MovementButtons/index";
 
-export const List = ({ tasks, deleteTask, moveTaskUp, moveTaskDown }) => {
+export const List = ({
+  tasks,
+  deleteTask,
+  moveTaskUp,
+  moveTaskDown,
+  tasksLength,
+}) => {
   return (
     <ol className={styles.ol_cont}>
       {tasks.map((task, index) => (
@@ -13,6 +19,7 @@ export const List = ({ tasks, deleteTask, moveTaskUp, moveTaskDown }) => {
             deleteTask={deleteTask}
             moveTaskUp={moveTaskUp}
             moveTaskDown={moveTaskDown}
+            tasksLength={tasksLength}
           />
         </li>
       ))}
