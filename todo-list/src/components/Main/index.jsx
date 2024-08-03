@@ -20,10 +20,19 @@ export const Main = () => {
   };
 
   const deleteTask = (index) => {
-    const updatedTasks = tasks.filter((_, i) => i !== index);
-    setTasks(updatedTasks);
+    const [removedTask] = tasks.splice(index, 1);
+    setTasks([...tasks]);
+    setTrashList((prev) => [...prev, removedTask]);
     setClick(true);
-    setTrashList((prev) => [...prev, index])
+  };
+
+  const returnTask = (trash) => {
+    setTrashList(trashList.filter((t) => t !== trash));
+    setTasks((prev) => [...prev, trash]);
+  };
+
+  const clearTrashList = () => {
+    setTrashList([]);
   };
 
   const moveTaskUp = (index) => {
@@ -48,6 +57,8 @@ export const Main = () => {
     }
   };
 
+  const tasksLength = tasks.length;
+
   return (
     <>
       <div className={styles.main_div}>
@@ -64,12 +75,17 @@ export const Main = () => {
                 deleteTask={deleteTask}
                 moveTaskUp={moveTaskUp}
                 moveTaskDown={moveTaskDown}
+                tasksLength={tasksLength}
               />
             </div>
           </div>
           <div className={styles.main_trash_div}>
             <h2 className={styles.name_trash_div}>Trash</h2>
-            <DeletedList tasks={tasks} trashList={trashList} setTrashList={setTrashList}/>
+            <DeletedList
+              trashList={trashList}
+              returnTask={returnTask}
+              clearTrashList={clearTrashList}
+            />
           </div>
         </div>
       </div>
