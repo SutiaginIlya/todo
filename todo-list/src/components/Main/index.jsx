@@ -7,6 +7,7 @@ import styles from "./index.module.css";
 export const Main = () => {
   const [tasks, setTasks] = useState([]);
   const [click, setClick] = useState(false);
+  const [trashList, setTrashList] = useState([]);
 
   useEffect(() => {
     if (click) {
@@ -22,6 +23,7 @@ export const Main = () => {
     const updatedTasks = tasks.filter((_, i) => i !== index);
     setTasks(updatedTasks);
     setClick(true);
+    setTrashList((prev) => [...prev, index])
   };
 
   const moveTaskUp = (index) => {
@@ -67,7 +69,7 @@ export const Main = () => {
           </div>
           <div className={styles.main_trash_div}>
             <h2 className={styles.name_trash_div}>Trash</h2>
-            <DeletedList />
+            <DeletedList tasks={tasks} trashList={trashList} setTrashList={setTrashList}/>
           </div>
         </div>
       </div>
