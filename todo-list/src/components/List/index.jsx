@@ -14,7 +14,6 @@ export const List = ({ tasks, deleteTask, moveTaskUp, moveTaskDown }) => {
             moveTaskUp={moveTaskUp}
             moveTaskDown={moveTaskDown}
           />
-          {/* <span className={styles.test_color}>test text</span> */}
         </li>
       ))}
     </ol>
