@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Input } from "../Input/index";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
@@ -6,14 +6,6 @@ import styles from "./index.module.css";
 
 export const HeadInput = ({ addTask }) => {
   const [newTask, setNewTask] = useState("");
-  const [click, setClick] = useState(false);
-
-  useEffect(() => {
-    if (click) {
-      alert("Новая задача добавлена");
-      console.log(1);
-    }
-  }, [click]);
 
   const handleInputChange = (event) => {
     setNewTask(event.target.value);
@@ -23,15 +15,12 @@ export const HeadInput = ({ addTask }) => {
     if (newTask.trim() !== "") {
       addTask(newTask);
       setNewTask("");
-      setClick(true);
-      console.log(2);
     }
   };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       handleAddTask();
-      setClick(true);
       console.log(3);
     }
   };
