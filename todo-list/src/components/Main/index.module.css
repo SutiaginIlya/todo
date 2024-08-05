@@ -6,6 +6,8 @@
 }
 .head_text_div {
     display: flex;
+    width: 100%;
+    justify-content: center;
 }
 .head_text {
     font-family: cursive;
@@ -24,7 +26,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    margin-right: 5rem;
+    /* margin-right: 5rem; */
     width: 100%;
     height: auto;
 }
@@ -44,7 +46,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    margin-left: 5rem;
+    /* margin-left: 5rem; */
     width: 100%;
     height: auto;
 }

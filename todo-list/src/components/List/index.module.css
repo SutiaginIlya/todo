@@ -18,7 +18,7 @@
     margin-right: 10px;
     max-width: 400px; 
     overflow: hidden;
-    white-space: wrap; 
+    white-space: normal; 
     overflow-wrap: break-word;
 }
 
