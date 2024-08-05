@@ -3,32 +3,51 @@ import { HeadInput } from "../HeadInput/index";
 import { List } from "../List/index";
 import { DeletedList } from "../DeletedList";
 import styles from "./index.module.css";
+import { PopupAdd } from "../PopupAdd";
+import { ModalClose } from "../ModalClose";
 
 export const Main = () => {
   const [tasks, setTasks] = useState([]);
-  const [click, setClick] = useState(false);
   const [trashList, setTrashList] = useState([]);
+  const [taskAdded, setTaskAdded] = useState(false);
+  const [taskDeleted, setTaskDeleted] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRestoringTask, setIsRestoringTask] = useState(false);
 
   useEffect(() => {
-    if (click) {
-      alert("Задача удалена");
+    if (taskAdded && !isRestoringTask) {
+      togglePopup();
+      setTaskAdded(false);
     }
-  }, [click]);
+  }, [taskAdded, isRestoringTask]);
+
+  useEffect(() => {
+    if (taskDeleted) {
+      toggleModal();
+      setTaskDeleted(false);
+    }
+  }, [taskDeleted]);
 
   const addTask = (newTask) => {
     setTasks((prev) => [...prev, newTask]);
+    setTaskAdded(true);
+    setIsRestoringTask(false);
   };
 
   const deleteTask = (index) => {
     const [removedTask] = tasks.splice(index, 1);
     setTasks([...tasks]);
     setTrashList((prev) => [...prev, removedTask]);
-    setClick(true);
+    setTaskDeleted(true);
+    setIsRestoringTask(false);
   };
 
   const returnTask = (trash) => {
     setTrashList(trashList.filter((t) => t !== trash));
     setTasks((prev) => [...prev, trash]);
+    setTaskAdded(false);
+    setIsRestoringTask(true);
   };
 
   const clearTrashList = () => {
@@ -55,6 +74,14 @@ export const Main = () => {
       ];
       setTasks(updatedTasks);
     }
+  };
+
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
   };
 
   const tasksLength = tasks.length;
@@ -88,6 +115,8 @@ export const Main = () => {
             />
           </div>
         </div>
+        {isPopupOpen && <PopupAdd handlePopupClose={togglePopup} />}
+        {isModalOpen && <ModalClose handleModalClose={toggleModal} />}
       </div>
     </>
   );
