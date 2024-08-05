@@ -21,4 +21,5 @@
 } */
 .main_parent_div {
     display: flex;
+    width: 1400px;
 }

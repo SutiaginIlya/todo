@@ -4,27 +4,27 @@ import { List } from "../List/index";
 import { DeletedList } from "../DeletedList";
 import styles from "./index.module.css";
 import { PopupAdd } from "../PopupAdd";
-import { ModalClose } from "../ModalClose";
+import { PopupDelete } from "../PopupDelete";
 
 export const Main = () => {
   const [tasks, setTasks] = useState([]);
   const [trashList, setTrashList] = useState([]);
   const [taskAdded, setTaskAdded] = useState(false);
   const [taskDeleted, setTaskDeleted] = useState(false);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPopupAddOpen, setIsPopupAddOpen] = useState(false);
+  const [isPopupDeleteOpen, setIsPopupDeleteOpen] = useState(false);
   const [isRestoringTask, setIsRestoringTask] = useState(false);
 
   useEffect(() => {
     if (taskAdded && !isRestoringTask) {
-      togglePopup();
+      togglePopupAdd();
       setTaskAdded(false);
     }
   }, [taskAdded, isRestoringTask]);
 
   useEffect(() => {
     if (taskDeleted) {
-      toggleModal();
+      togglePopupDelete();
       setTaskDeleted(false);
     }
   }, [taskDeleted]);
@@ -76,12 +76,12 @@ export const Main = () => {
     }
   };
 
-  const togglePopup = () => {
-    setIsPopupOpen(!isPopupOpen);
+  const togglePopupAdd = () => {
+    setIsPopupAddOpen(!isPopupAddOpen);
   };
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+  const togglePopupDelete = () => {
+    setIsPopupDeleteOpen(!isPopupDeleteOpen);
   };
 
   const tasksLength = tasks.length;
@@ -115,8 +115,10 @@ export const Main = () => {
             />
           </div>
         </div>
-        {isPopupOpen && <PopupAdd handlePopupClose={togglePopup} />}
-        {isModalOpen && <ModalClose handleModalClose={toggleModal} />}
+        {isPopupAddOpen && <PopupAdd handlePopupAdd={togglePopupAdd} />}
+        {isPopupDeleteOpen && (
+          <PopupDelete handlePopupDelete={togglePopupDelete} />
+        )}
       </div>
     </>
   );

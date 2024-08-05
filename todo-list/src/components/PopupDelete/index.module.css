@@ -1,4 +1,4 @@
-.add_popup {
+.delete_popup {
   position: fixed;
   top: 2%;
   right: 2%;
@@ -7,15 +7,16 @@
   align-items: center;
 }
   
-.add_popup_background {
+.delete_popup_background {
   display: flex;
   flex-direction: column;
-  background-color: rgb(22, 228, 32);
+  background-color: rgb(247, 40, 40);
   padding: 20px;
   border-radius: 10px;
   text-align: center;
 }
-.add_popup_content {
+
+.delete_popup_content {
   margin-bottom: 20px;
   font-size: 32px;
 }
