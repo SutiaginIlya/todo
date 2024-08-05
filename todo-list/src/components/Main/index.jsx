@@ -17,14 +17,14 @@ export const Main = () => {
 
   useEffect(() => {
     if (taskAdded && !isRestoringTask) {
-      togglePopupAdd();
+      handlePopupAddCancel();
       setTaskAdded(false);
     }
   }, [taskAdded, isRestoringTask]);
 
   useEffect(() => {
     if (taskDeleted) {
-      togglePopupDelete();
+      handlePopupDeleteCancel();
       setTaskDeleted(false);
     }
   }, [taskDeleted]);
@@ -76,11 +76,11 @@ export const Main = () => {
     }
   };
 
-  const togglePopupAdd = () => {
+  const handlePopupAddCancel = () => {
     setIsPopupAddOpen(!isPopupAddOpen);
   };
 
-  const togglePopupDelete = () => {
+  const handlePopupDeleteCancel = () => {
     setIsPopupDeleteOpen(!isPopupDeleteOpen);
   };
 
@@ -115,9 +115,9 @@ export const Main = () => {
             />
           </div>
         </div>
-        {isPopupAddOpen && <PopupAdd handlePopupAdd={togglePopupAdd} />}
+        {isPopupAddOpen && <PopupAdd handlePopupAddCancel={handlePopupAddCancel} />}
         {isPopupDeleteOpen && (
-          <PopupDelete handlePopupDelete={togglePopupDelete} />
+          <PopupDelete handlePopupDeleteCancel={handlePopupDeleteCancel} />
         )}
       </div>
     </>
