@@ -1,6 +1,8 @@
 import React from "react";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 import styles from "./index.module.css";
 
 export const DeletedList = ({ trashList, returnTask, clearTrashList }) => {
@@ -13,8 +15,17 @@ export const DeletedList = ({ trashList, returnTask, clearTrashList }) => {
               <div className={styles.text}>{trash}</div>
               <span>
                 <Stack spacing={2} direction="row">
-                  <Button variant="contained" onClick={() => returnTask(trash)}>
-                    Restore😂
+                  <IconButton
+                    aria-label="delete"
+                    color="error"
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                  <Button
+                    variant="contained"
+                    onClick={() => returnTask(trash)}
+                  >
+                    Return
                   </Button>
                 </Stack>
               </span>

@@ -1,0 +1,45 @@
+.popup {
+  position: fixed;
+  top: 2%;
+  right: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadein 1s, fadeout 1s 9s;
+}
+  
+.popup_background {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.popup_content {
+  margin-bottom: 20px;
+  font-size: 32px;
+}
+
+.add {
+  background-color: green;
+}
+
+.delete {
+  background-color: red;
+}
+
+.return {
+  background-color: green;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

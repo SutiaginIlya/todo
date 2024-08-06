@@ -1,53 +1,78 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { HeadInput } from "../HeadInput/index";
 import { List } from "../List/index";
 import { DeletedList } from "../DeletedList";
+import { Popup } from "../Popup";
 import styles from "./index.module.css";
-import { PopupAdd } from "../PopupAdd";
-import { PopupDelete } from "../PopupDelete";
 
 export const Main = () => {
   const [tasks, setTasks] = useState([]);
   const [trashList, setTrashList] = useState([]);
-  const [taskAdded, setTaskAdded] = useState(false);
-  const [taskDeleted, setTaskDeleted] = useState(false);
-  const [isPopupAddOpen, setIsPopupAddOpen] = useState(false);
-  const [isPopupDeleteOpen, setIsPopupDeleteOpen] = useState(false);
-  const [isRestoringTask, setIsRestoringTask] = useState(false);
+  const [lastAddedTask, setLastAddedTask] = useState(null);
+  const [lastDeletedTask, setLastDeletedTask] = useState(null);
+  const [popupType, setPopupType] = useState(null);
+
+  const tasksLengthRef = useRef(tasks.length);
+  const trashListLengthRef = useRef(trashList.length);
 
   useEffect(() => {
-    if (taskAdded && !isRestoringTask) {
-      handlePopupAddCancel();
-      setTaskAdded(false);
+    if (lastAddedTask) {
+      setPopupType("add");
     }
-  }, [taskAdded, isRestoringTask]);
+    const timer = setTimeout(() => {
+      setPopupType(null);
+      setLastAddedTask(null);
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, [lastAddedTask]);
 
   useEffect(() => {
-    if (taskDeleted) {
-      handlePopupDeleteCancel();
-      setTaskDeleted(false);
+    if (lastDeletedTask) {
+      setPopupType("delete");
     }
-  }, [taskDeleted]);
+    const timer = setTimeout(() => {
+      setPopupType(null);
+      setLastDeletedTask(null);
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, [lastDeletedTask]);
+
+  useEffect(() => {
+    const prevTrashListLength = trashListLengthRef.current;
+
+    const trashListChanged = trashList.length < prevTrashListLength;
+
+    if (trashListChanged) {
+      console.log("треш уменьшился");
+      setPopupType("return");
+    }
+
+    trashListLengthRef.current = trashList.length;
+
+    const timer = setTimeout(() => {
+      setPopupType(null);
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, [tasks, trashList]);
 
   const addTask = (newTask) => {
     setTasks((prev) => [...prev, newTask]);
-    setTaskAdded(true);
-    setIsRestoringTask(false);
+    setLastAddedTask(newTask);
   };
 
   const deleteTask = (index) => {
     const [removedTask] = tasks.splice(index, 1);
     setTasks([...tasks]);
     setTrashList((prev) => [...prev, removedTask]);
-    setTaskDeleted(true);
-    setIsRestoringTask(false);
+    setLastDeletedTask(removedTask);
   };
 
   const returnTask = (trash) => {
     setTrashList(trashList.filter((t) => t !== trash));
     setTasks((prev) => [...prev, trash]);
-    setTaskAdded(false);
-    setIsRestoringTask(true);
   };
 
   const clearTrashList = () => {
@@ -76,15 +101,18 @@ export const Main = () => {
     }
   };
 
-  const handlePopupAddCancel = () => {
-    setIsPopupAddOpen(!isPopupAddOpen);
+  const handlePopupCancel = () => {
+    if (popupType === "add" && lastAddedTask) {
+      setTasks((prev) => prev.filter((task) => task !== lastAddedTask));
+      setLastAddedTask(null);
+      setPopupType(false);
+    } else if (popupType === "delete" && lastDeletedTask) {
+      setTrashList((prev) => prev.filter((task) => task !== lastDeletedTask));
+      setTasks((prev) => [...prev, lastDeletedTask]);
+      setLastDeletedTask(null);
+      setPopupType(false);
+    }
   };
-
-  const handlePopupDeleteCancel = () => {
-    setIsPopupDeleteOpen(!isPopupDeleteOpen);
-  };
-
-  const tasksLength = tasks.length;
 
   return (
     <>
@@ -102,7 +130,7 @@ export const Main = () => {
                 deleteTask={deleteTask}
                 moveTaskUp={moveTaskUp}
                 moveTaskDown={moveTaskDown}
-                tasksLength={tasksLength}
+                tasksLength={tasksLengthRef}
               />
             </div>
           </div>
@@ -115,9 +143,8 @@ export const Main = () => {
             />
           </div>
         </div>
-        {isPopupAddOpen && <PopupAdd handlePopupAddCancel={handlePopupAddCancel} />}
-        {isPopupDeleteOpen && (
-          <PopupDelete handlePopupDeleteCancel={handlePopupDeleteCancel} />
+        {popupType && (
+          <Popup handleCancel={handlePopupCancel} type={popupType} />
         )}
       </div>
     </>
